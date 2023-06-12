@@ -1,4 +1,4 @@
-export interface episode {
+export interface episodeToFetch {
   air_date: string;
   episode: string;
   id: number;
@@ -6,7 +6,7 @@ export interface episode {
 }
 
 export interface IEpisodes {
-  allEpisodes: episode[];
+  allEpisodes: episodeToFetch[];
 }
 
 export interface IEpisode {
@@ -14,4 +14,5 @@ export interface IEpisode {
   episode: string;
   name: string;
   index: number;
+  allEpisodes: episodeToFetch[];
 }

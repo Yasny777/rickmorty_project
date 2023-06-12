@@ -1,12 +1,13 @@
 import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
+import Footer from "./components/Footer";
 import List from "./components/List";
 import axios from "axios";
-import { episode } from "./interfaces/interfaces";
+import { episodeToFetch } from "./interfaces/interfaces";
 
 const App = (): JSX.Element => {
-  const [allEpisodes, setAllEpisodes] = useState<episode[]>([]);
+  const [allEpisodes, setAllEpisodes] = useState<episodeToFetch[]>([]);
 
   useEffect(() => {
     fetchEpisodes();
@@ -22,14 +23,16 @@ const App = (): JSX.Element => {
       .then((res) => res.data.results)
       .catch((err) => console.log(err));
 
-    const filteredObjects: Array<episode> = response.map((element: episode) => {
-      return {
-        air_date: element.air_date,
-        episode: element.episode,
-        id: element.id,
-        name: element.name,
-      };
-    });
+    const filteredObjects: Array<episodeToFetch> = response.map(
+      (element: episodeToFetch) => {
+        return {
+          air_date: element.air_date,
+          episode: element.episode,
+          id: element.id,
+          name: element.name,
+        };
+      }
+    );
 
     setAllEpisodes(filteredObjects);
   };
@@ -60,10 +63,11 @@ const App = (): JSX.Element => {
   return (
     <>
       <Navbar />
-      <div className="flex flex-col ">
+      <main className="flex flex-col lg:flex-row ">
         <Header />
         <List allEpisodes={allEpisodes} />
-      </div>
+      </main>
+      <Footer />
     </>
   );
 };
