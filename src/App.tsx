@@ -8,7 +8,7 @@ import { episodeToFetch } from "./interfaces/interfaces";
 
 const App = (): JSX.Element => {
   const [allEpisodes, setAllEpisodes] = useState<episodeToFetch[]>([]);
-  // test
+
   useEffect(() => {
     fetchEpisodes();
   }, []);
