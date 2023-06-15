@@ -1,14 +1,29 @@
 import { FC } from "react";
+import styled from "styled-components";
+import { COLORS } from "../constants/variables";
 
 const Footer: FC = () => {
-  //test
   return (
-    <footer className="w-full bg-myFooter flex justify-center text-myFooterFont lg:mt-20">
-      <p className="uppercase py-[15px] text-[14px] font-[Lato-Bold] pr-4 lg:pr-0 lg:text-[17px]">
-        Lorem ipsum &copy;2021
-      </p>
-    </footer>
+    <StyledFooter>
+      <p>Lorem ipsum &copy;2021</p>
+    </StyledFooter>
   );
 };
+
+const StyledFooter = styled.footer`
+  width: 100%;
+  display: flex;
+  justify-content: center;
+  font-family: "Lato-Bold";
+  color: ${COLORS.MyFooterFont};
+  background-color: ${COLORS.MyFooter};
+  margin-top: 19px;
+
+  p {
+    font-size: 14px;
+    text-transform: uppercase;
+    padding: 18px 20px 20px 0px;
+  }
+`;
 
 export default Footer;

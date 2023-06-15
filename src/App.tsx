@@ -5,6 +5,7 @@ import Footer from "./components/Footer";
 import List from "./components/List";
 import axios from "axios";
 import { episodeToFetch } from "./interfaces/interfaces";
+import styled from "styled-components";
 
 const App = (): JSX.Element => {
   const [allEpisodes, setAllEpisodes] = useState<episodeToFetch[]>([]);
@@ -63,12 +64,22 @@ const App = (): JSX.Element => {
   return (
     <>
       <Navbar />
-      <main className="flex flex-col lg:flex-row ">
+      <Main>
         <Header />
         <List allEpisodes={allEpisodes} />
-      </main>
+      </Main>
       <Footer />
     </>
   );
 };
+
+const Main = styled.main`
+  display: flex;
+  flex-direction: column;
+
+  @media screen and (min-width: 1024px) {
+    flex-direction: row;
+  }
+`;
+
 export default App;

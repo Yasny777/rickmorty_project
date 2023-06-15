@@ -1,4 +1,5 @@
 import ListElement from "./ListElement";
+import styled from "styled-components";
 import { FC } from "react";
 import { IEpisodes, episodeToFetch } from "../interfaces/interfaces";
 
@@ -18,11 +19,16 @@ const List: FC<IEpisodes> = ({ allEpisodes }) => {
     }
   );
 
-  return (
-    <ul className="list-none flex flex-col gap-[14.5px] mt-[57px] mb-12 lg:mt-32 lg:ml-32 lg:gap-0">
-      {listOfEpisodes}
-    </ul>
-  );
+  return <StyledList>{listOfEpisodes}</StyledList>;
 };
+
+const StyledList = styled.ul`
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+  padding: 0 25px;
+  margin-top: 60px;
+  gap: 20px;
+`;
 
 export default List;

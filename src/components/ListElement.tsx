@@ -1,28 +1,46 @@
 import { FC } from "react";
 import { IEpisode } from "../interfaces/interfaces";
+import styled from "styled-components";
+import { COLORS } from "../constants/variables";
 
 const ListElement: FC<IEpisode> = (props) => {
-  let styleForP: string =
-    "text-[18px] font-[Lato-Bold] mt-[8px] lg:mt-0 lg:text-2xl ";
-  if (props.index % 2 === 0) {
-    styleForP += "text-myBlue";
-  } else {
-    styleForP += "text-myLime";
-  }
-
   return (
-    <li className="w-full px-[25px] flex flex-col after:border-solid after:border-b after:border-myListFont after:last:border-b-0 lg:flex-row ">
-      <p className="text-[18px] font-[Lato-Bold] lg:text-[26px] lg:border-solid lg:border-r lg:border-myListFont lg:pr-8 ">
-        {props.episode}
-      </p>
-      <div className="lg:pl-8 lg:text-4xl lg:pb-5">
-        <p className={styleForP}>{props.name}</p>
-        <p className="text-[15px] text-myListFont font-[Lato-Bold] mb-[19px] mt-[9px] lg:text-xl">
-          {props.air_date}
-        </p>
+    <ListPart $index={props.index} $lengthList={props.allEpisodes.length - 1}>
+      <p>{props.episode}</p>
+      <div>
+        <p>{props.name}</p>
+        <p>{props.air_date}</p>
       </div>
-    </li>
+    </ListPart>
   );
 };
+
+const ListPart = styled.li<{ $index: number; $lengthList: number }>`
+  width: 100%;
+  height: 111px;
+  display: flex;
+  flex-direction: column;
+  font-family: "Lato-Bold";
+  gap: 13px;
+  border-bottom: ${(props) =>
+    props.$index === props.$lengthList
+      ? null
+      : `solid 1px ${COLORS.MyListFont}`};
+
+  p {
+    font-size: 18px;
+  }
+
+  div > p:nth-child(1) {
+    color: ${(props) =>
+      props.$index % 2 === 0 ? COLORS.MyBlue : COLORS.MyLime};
+  }
+
+  div > p:nth-child(2) {
+    color: ${COLORS.MyListFont};
+    margin-top: 14px;
+    font-size: 15px;
+  }
+`;
 
 export default ListElement;

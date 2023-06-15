@@ -1,27 +1,55 @@
+import styled from "styled-components";
 import mainLogo from "../img/image.png";
+import { COLORS } from "../constants/variables";
 
 const Header = (): JSX.Element => {
   return (
-    <div className="lg:ml-[170px]">
-      <div className="px-7 mt-[40px] font-['Lato-Regular'] text-[35px]/[43px] md:text-4xl lg:mt-[111px] lg:text-6xl/[80px]">
-        <h2>
-          <p>
-            Episodes of the <strong className="font-['Lato-Bold']">4th</strong>
-          </p>
-          <p className="">season of the series</p>
-          <strong className="text-[38px] text-myBlue font-['Lato-Bold'] lg:text-[68px]/[30px]">
-            Rick and Morty
-          </strong>
-        </h2>
+    <Container>
+      <Title>
+        <p>
+          Episodes of the <strong>4th</strong>
+        </p>
+        <p>season of the series</p>
+        <Strong $textColor={COLORS.MyBlue}>Rick and Morty</Strong>
+      </Title>
 
-        <img
-          src={mainLogo}
-          alt="Rick and Morty"
-          className="mt-[47px] pr-2 lg:mt-6"
-        ></img>
-      </div>
-    </div>
+      <Image src={mainLogo} alt="Rick and Morty"></Image>
+    </Container>
   );
 };
+
+const Container = styled.div`
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+`;
+
+const Image = styled.img.attrs((props) => ({
+  src: props.src,
+}))`
+  width: 85%;
+  max-width: fit-content;
+  margin-top: 43px;
+  margin-right: 3px;
+`;
+
+const Title = styled.h2`
+  font-family: "Lato-Regular";
+  font-size: 33px;
+  line-height: 42px;
+  padding-top: 43px;
+  padding-right: 53px;
+
+  strong {
+    font-family: "Lato-Bold";
+  }
+`;
+
+const Strong = styled.strong<{ $textColor?: string }>`
+  font-family: "Lato-Bold";
+  font-size: 38px;
+  color: ${(props) => props.$textColor};
+`;
 
 export default Header;
