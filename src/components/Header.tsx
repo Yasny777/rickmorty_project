@@ -1,6 +1,6 @@
 import styled from "styled-components";
 import mainLogo from "../img/image.png";
-import { COLORS } from "../constants/variables";
+import { Colors } from "../constants/variables";
 
 const Header = (): JSX.Element => {
   return (
@@ -10,7 +10,7 @@ const Header = (): JSX.Element => {
           Episodes of the <strong>4th</strong>
         </p>
         <p>season of the series</p>
-        <Strong $textColor={COLORS.MyBlue}>Rick and Morty</Strong>
+        <Strong $textColor={Colors.MY_BLUE}>Rick and Morty</Strong>
       </Title>
 
       <Image src={mainLogo} alt="Rick and Morty"></Image>
@@ -44,12 +44,23 @@ const Title = styled.h2`
   strong {
     font-family: "Lato-Bold";
   }
+
+  @media screen and (min-width: 1024px) {
+    font-size: 60px;
+    line-height: normal;
+    margin-top: 80px;
+    letter-spacing: -2px;
+  }
 `;
 
 const Strong = styled.strong<{ $textColor?: string }>`
   font-family: "Lato-Bold";
   font-size: 38px;
   color: ${(props) => props.$textColor};
+
+  @media screen and (min-width: 1024px) {
+    font-size: 70px;
+  }
 `;
 
 export default Header;

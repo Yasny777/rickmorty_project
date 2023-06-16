@@ -1,6 +1,6 @@
 import { FC } from "react";
 import styled from "styled-components";
-import { COLORS } from "../constants/variables";
+import { Colors } from "../constants/variables";
 
 const Footer: FC = () => {
   return (
@@ -15,14 +15,21 @@ const StyledFooter = styled.footer`
   display: flex;
   justify-content: center;
   font-family: "Lato-Bold";
-  color: ${COLORS.MyFooterFont};
-  background-color: ${COLORS.MyFooter};
+  color: ${Colors.MY_FOOTER_FONT};
+  background-color: ${Colors.MY_FOOTER};
   margin-top: 19px;
 
   p {
     font-size: 14px;
     text-transform: uppercase;
     padding: 18px 20px 20px 0px;
+  }
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 80px;
+    p {
+      font-size: 15px;
+    }
   }
 `;
 

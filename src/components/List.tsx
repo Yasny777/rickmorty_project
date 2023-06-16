@@ -29,6 +29,11 @@ const StyledList = styled.ul`
   padding: 0 25px;
   margin-top: 60px;
   gap: 20px;
+
+  @media screen and (min-width: 1024px) {
+    margin-top: 140px;
+    gap: 0;
+  }
 `;
 
 export default List;
