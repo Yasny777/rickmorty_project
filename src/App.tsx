@@ -1,42 +1,32 @@
-import { useState, useEffect } from "react";
 import Navbar from "./components/Navbar";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import List from "./components/List";
 import { episodeToFetch } from "./interfaces/interfaces";
 import styled from "styled-components";
-import { gql, useQuery } from "@apollo/client";
-
-const GET_DATA = gql`
-  query getData {
-    episodes(filter: { episode: "S04" }) {
-      results {
-        name
-        id
-        air_date
-        episode
-      }
-    }
-  }
-`;
+import { useQuery } from "@apollo/client";
+import { GET_DATA } from "./graphql/get-data";
 
 const App = (): JSX.Element => {
-  const [allEpisodes, setAllEpisodes] = useState<episodeToFetch[]>([]);
+  const { data, loading, error } = useQuery(GET_DATA);
 
-  const { data } = useQuery(GET_DATA);
+  if (loading) {
+    return <p>Loading...</p>;
+  }
 
-  useEffect(() => {
-    if (data) {
-      setAllEpisodes(data.episodes.results);
-    }
-  }, [data]);
+  if (error) {
+    console.log(error);
+    return <p>Error, check console</p>;
+  }
+
+  const dataFetched = data?.episodes?.results as episodeToFetch[];
 
   return (
     <>
       <Navbar />
       <Main>
         <Header />
-        <List allEpisodes={allEpisodes} />
+        <List allEpisodes={dataFetched} />
       </Main>
       <Footer />
     </>

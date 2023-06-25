@@ -1,1 +1,0 @@
-GET https://rickandmortyapi.com/api/episode?episode=S04 HTTP/1.1

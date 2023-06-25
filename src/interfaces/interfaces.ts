@@ -1,7 +1,7 @@
 export interface episodeToFetch {
   air_date: string;
   episode: string;
-  id: number;
+  id: number | string;
   name: string;
 }
 
